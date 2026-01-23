@@ -18,16 +18,24 @@ repositories {
 }
 
 dependencies {
-    // webmvc가 아니라 web으로 써야 정상 작동합니다.
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // webmvc가 아니라 web으로 써야됨
+    implementation 'org.springframework.boot:spring-boot-starter-web'//웹
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' //타임리프 템플릿 엔진
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    // 테스트에서 시큐리티 관련 항목을 제거하여 충돌을 막습니다.
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'//자동으로 들어온 것 테스트
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    //MYSQL 드라이버
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    // 자바에서 SQL을 편하게 날리게 해주는 도구
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
+    // JPA 관련 어노테이션(@Entity 등)을 사용하기 위해 필요.
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
 tasks.named('test') {

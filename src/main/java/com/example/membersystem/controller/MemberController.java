@@ -12,27 +12,34 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    // 생성자를 통해 MemberService를 주입받음 (DI)
+    // 생성자를 통해 MemberService를 주입받음
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
 
-    // 1. 회원가입 화면을 보여주는 기능 (GET)
+    // localhost:8080/members/new 를 입력하면 get방식을 통해서 html 반환
     @GetMapping("/members/new")
     public String createForm() {
-        return "members/createMemberForm"; // templates/members/createMemberForm.html을 찾아감
+        return "members/createMemberForm"; // templates/members/createMemberForm.html
     }
 
-    // 2. 실제 가입 데이터를 처리하는 기능 (POST)
+    // post 방식으로 mebers/new에 매핑하면 다음과 같음
     @PostMapping("/members/new")
     public String create(MemberForm form) {
+
         Member member = new Member();
         member.setEmail(form.getEmail());
         member.setName(form.getName());
         member.setPassword(form.getPassword());
 
-        memberService.join(member);
+        memberService.join(member); // DB 저장 실행
 
-        return "redirect:/"; // 가입 완료 후 홈 화면으로 이동
+        return "redirect:/home"; // 가입 완료 후 홈으로 이동
+    }
+
+    // 3. 홈 화면 (GET)
+    @GetMapping("/home")
+    public String home() {
+        return "home"; // templates/home.html
     }
 }

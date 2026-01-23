@@ -5,7 +5,7 @@ public class MemberForm {
     private String name;
     private String password;
 
-    // Getter와 Setter (Alt + Insert로 생성하세요!)
+    // form.germail() 작동하는 이유
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
@@ -14,5 +14,4 @@ public class MemberForm {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
-
 }
